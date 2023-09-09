@@ -63,6 +63,8 @@ Finally, the user can check out by going to their shopping cart, as shown in the
 
 ![The user checks out by going to their shopping cart.](./assets/images/22-state-homework-demo-03.gif)
 
+To test the live site, use this Heroku [link](https://vast-basin-17646-9d2552386281.herokuapp.com/)
+
 ## Contribution
 
 Contribution falls under open MIT license.
