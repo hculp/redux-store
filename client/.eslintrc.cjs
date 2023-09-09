@@ -9,6 +9,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'airbnb',
+    'airbnb/hooks',
   ],
   overrides: [],
   parserOptions: {
