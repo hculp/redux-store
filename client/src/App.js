@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
+// Needed imports for Redux context here
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -43,6 +44,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        {/*Wrap the entire application in the Provider component and pass in the store*/}
         <Provider store={store}>
           <Nav />
           <Routes>
