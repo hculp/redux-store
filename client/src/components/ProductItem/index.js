@@ -1,29 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+// import the redux useDispatch and useSelector hooks
+import { useDispatch, useSelector } from "react-redux";
+// import the cart actions from the redux store
+import { cartActions } from "../../store/cart.slice";
 
-import { useCartContext } from '../../context/CartContext';
-
-import { pluralize, idbPromise } from '../../utils/helpers';
+import { pluralize, idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
-  const { cart, updateCartQuantity, addToCart } = useCartContext();
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
 
   const { image, name, _id, price, quantity } = item;
 
-  const handleAddToCart = () => {
-    const itemInCart = cart.find(cartItem => cartItem._id === _id);
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
-      updateCartQuantity(_id, parseInt(itemInCart.purchaseQuantity, 10) + 1);
-      idbPromise('cart', 'put', {
+      // dispatch the addToCart action with the data from itemInCart
+      dispatch(
+        cartActions.addToCart({
+          _id,
+          purchaseQuantity: parseInt(itemInCart.purchaseQuantity, 10) + 1,
+        })
+      );
+      idbPromise("cart", "put", {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity, 10) + 1,
       });
     } else {
-      addToCart({
-        ...item, purchaseQuantity: 1
-      });
-      idbPromise('cart', 'put', {
-        ...item, purchaseQuantity: 1
+      // dispatch the addToCart action with the data from item
+      dispatch(
+        cartActions.addToCart({
+          product: {
+            ...item,
+            purchaseQuantity: 1,
+          },
+        })
+      );
+      idbPromise("cart", "put", {
+        ...item,
+        purchaseQuantity: 1,
       });
     }
   };
@@ -36,18 +52,13 @@ function ProductItem(item) {
       </Link>
       <div>
         <div>
-          {quantity}
-          {' '}
-          {pluralize('item', quantity)}
-          {' '}
-          in stock
+          {quantity} {pluralize("item", quantity)} in stock
         </div>
-        <span>
-          $
-          {price}
-        </span>
+        <span>${price}</span>
       </div>
-      <button type="button" onClick={handleAddToCart}>Add to cart</button>
+      <button type="button" onClick={addToCart}>
+        Add to cart
+      </button>
     </div>
   );
 }
