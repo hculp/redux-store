@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 // create initial state for cart as an empty array and cartOpen as false
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   // Slice reducers here
   reducers: {
@@ -21,14 +21,14 @@ const cartSlice = createSlice({
       state.cartOpen = true;
       state.cart = [...state.cart, action.payload.product];
     },
-    // this action will trigger when the user clicks the add to cart button on the single product page to add multiple items of the same product to the cart
+    // this action will trigger when the user add multiple items of the same product to the cart
     addMultipleToCart(state, action) {
       state.cart = [...state.cart, ...action.payload.products];
     },
     // this action will trigger when the user changes the quantity of an item in the cart
     updateCartQuantity(state, action) {
       state.cartOpen = true;
-      state.cart = state.cart.map((product) => {
+      state.cart = state.cart.map(product => {
         if (action.payload._id === product._id) {
           product.purchaseQuantity = action.payload.purchaseQuantity;
         }
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
     // this action will trigger when the user clicks the delete button on an item in the cart
     removeFromCart(state, action) {
       const newState = state.cart.filter(
-        (product) => product._id !== action.payload._id
+        product => product._id !== action.payload._id
       );
       state.cartOpen = newState.length > 0;
       state.cart = newState;

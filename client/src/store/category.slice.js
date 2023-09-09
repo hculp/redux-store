@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 // create initial state for category as an empty array and currentCategory as an empty string
 const initialState = {
   categories: [],
-  currentCategory: "",
+  currentCategory: '',
 };
 
 const categorySlice = createSlice({
-  name: "category",
+  name: 'category',
   initialState,
   reducers: {
-    // this action will trigger when the user clicks the category button in the nav bar to open the category drawer
+    // this action will trigger when the category button is clicked to open the category drawer
     updateCategories(state, action) {
       state.categories = [...action.payload.categories];
     },

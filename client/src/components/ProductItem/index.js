@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 // import the redux useDispatch and useSelector hooks
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 // import the cart actions from the redux store
-import { cartActions } from "../../store/cart.slice";
+import { cartActions } from '../../store/cart.slice';
 
-import { pluralize, idbPromise } from "../../utils/helpers";
+import { pluralize, idbPromise } from '../../utils/helpers';
 
 function ProductItem(item) {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.cart);
+  const { cart } = useSelector(state => state.cart);
 
   const { image, name, _id, price, quantity } = item;
 
   const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+    const itemInCart = cart.find(cartItem => cartItem._id === _id);
     if (itemInCart) {
       // dispatch the addToCart action with the data from itemInCart
       dispatch(
@@ -23,7 +23,7 @@ function ProductItem(item) {
           purchaseQuantity: parseInt(itemInCart.purchaseQuantity, 10) + 1,
         })
       );
-      idbPromise("cart", "put", {
+      idbPromise('cart', 'put', {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity, 10) + 1,
       });
@@ -37,7 +37,7 @@ function ProductItem(item) {
           },
         })
       );
-      idbPromise("cart", "put", {
+      idbPromise('cart', 'put', {
         ...item,
         purchaseQuantity: 1,
       });
@@ -52,9 +52,16 @@ function ProductItem(item) {
       </Link>
       <div>
         <div>
-          {quantity} {pluralize("item", quantity)} in stock
+          {quantity}
+          {' '}
+          {pluralize('item', quantity)}
+          {' '}
+          in stock
         </div>
-        <span>${price}</span>
+        <span>
+          $
+          {price}
+        </span>
       </div>
       <button type="button" onClick={addToCart}>
         Add to cart

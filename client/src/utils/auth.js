@@ -1,5 +1,5 @@
 import decode from 'jwt-decode';
-
+/* eslint-disable class-methods-use-this */
 class AuthService {
   getProfile() {
     return decode(this.getToken());
@@ -16,7 +16,8 @@ class AuthService {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
         return true;
-      } return false;
+      }
+      return false;
     } catch (err) {
       return false;
     }
