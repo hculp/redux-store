@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "@apollo/client": "^3.7.3",
+    "@reduxjs/toolkit": "^1.9.1",
     "@stripe/stripe-js": "^1.46.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,8 +14,10 @@
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.5.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "redux": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,5 +48,8 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0"
+  },
+  "engines": {
+    "npm": "7.x"
   }
 }
