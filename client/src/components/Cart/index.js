@@ -58,7 +58,7 @@ function Cart() {
     return () => {
       ignore = true;
     };
-  }, [cart.length]);
+  }, [cart.length, dispatch]);
 
   // a toggleCart function that dispatches the toggleCart action
   function toggleCart() {
