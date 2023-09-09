@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+// create initial state for product as an empty array
 const initialState = {
   products: [],
 };
